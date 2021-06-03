@@ -4,4 +4,4 @@
 # Teste 2
 # Teste 3
 
-# Teste Bash2
+# Teste merge
