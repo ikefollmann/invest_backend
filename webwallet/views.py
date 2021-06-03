@@ -29,7 +29,7 @@ def register(request):
 
 def teste(request):
     #importa_dados.importa(2021)
-    print('testando')
+    #print('testando')
     return HttpResponse("Será que deu insert?")
 
 def dadosbtc(request):
