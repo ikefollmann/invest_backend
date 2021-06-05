@@ -55,4 +55,4 @@ class Relatorio(models.Model):
         return json
 
     def getCotacao(ticker, dataini, datafin, intervalo='diario'):
-        return json
+        return "testando"
