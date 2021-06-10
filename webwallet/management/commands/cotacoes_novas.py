@@ -16,3 +16,4 @@ class Command(BaseCommand):
                 hoje = stock[nome]['regularMartketTime'][0:10]
                 cotacao = stock[nome]['regularMarketPrice']
                 acao = Acao(ticker=ticker, data_cotacao=hoje, cotacao=cotacao)
+                acao.save()
