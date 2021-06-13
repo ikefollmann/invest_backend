@@ -19,3 +19,7 @@ class Command(BaseCommand):
                     cotacao = stock[ticker]['regularMarketPrice']
                     acao.cotacao = float(cotacao)
                     acao.save()
+                else:
+                    print('Mercao fechado:'+str(stock[ticker]['marketState'] == 'POSTPOST'))
+        else:
+            print('Data difere da ultima data do banco')
