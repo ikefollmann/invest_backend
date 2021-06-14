@@ -25,17 +25,17 @@ class Carteira(models.Model):
         return json
 
 
+class Acao(models.Model):
+    cotacao = models.DecimalField(max_digits=12, decimal_places=2)
+    data_cotacao = models.DateField(db_index=True)
+    ticker = models.CharField(max_length=10, db_index=True)
+
+
 class Ativo(models.Model):
     ticker = models.ManyToManyField(Acao)
     data_compra = models.DateField()
     preco_compra = models.DecimalField(max_digits=12, decimal_places=2)
     carteira = models.ForeignKey(Carteira, on_delete=models.CASCADE, db_index=True)
-
-
-class Acao(models.Model):
-    cotacao = models.DecimalField(max_digits=12, decimal_places=2)
-    data_cotacao = models.DateField(db_index=True)
-    ticker = models.CharField(max_length=10, db_index=True)
 
 
 class Relatorio(models.Model):
