@@ -36,6 +36,7 @@ class Ativo(models.Model):
     data_compra = models.DateField()
     preco_compra = models.DecimalField(max_digits=12, decimal_places=2)
     carteira = models.ForeignKey(Carteira, on_delete=models.CASCADE, db_index=True)
+    cotas = models.BigIntegerField()
 
 
 class Relatorio(models.Model):
