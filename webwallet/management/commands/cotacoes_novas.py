@@ -12,7 +12,7 @@ class Command(BaseCommand):
             nome = ticker['ticker']+'.sa'
             stock = Ticker(nome).price
             if stock[nome]['marketState'] == 'REGULAR' and stock[nome]['regularMarketTime'][0:10] != str(ult_data):
-                hoje = stock[nome]['regularMartketTime'][0:10]
+                hoje = stock[nome]['regularMarketTime'][0:10]
                 cotacao = stock[nome]['regularMarketPrice']
                 acao = Acao(ticker=ticker, data_cotacao=hoje, cotacao=cotacao)
                 acao.save()
