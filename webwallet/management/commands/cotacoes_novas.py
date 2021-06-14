@@ -14,7 +14,7 @@ class Command(BaseCommand):
             if stock[nome]['marketState'] == 'REGULAR' and stock[nome]['regularMarketTime'][0:10] != str(ult_data):
                 hoje = stock[nome]['regularMarketTime'][0:10]
                 cotacao = stock[nome]['regularMarketPrice']
-                acao = Acao(ticker=ticker, data_cotacao=hoje, cotacao=cotacao)
+                acao = Acao(ticker=ticker['ticker'], data_cotacao=hoje, cotacao=cotacao)
                 acao.save()
             else:
                 #print('Mercado aberto:'+str(stock[nome]['marketState'] == 'REGULAR'))
