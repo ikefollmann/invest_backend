@@ -28,7 +28,7 @@ def register(request):
     return render(request = request, template_name = 'registration/register.html', context={'form':form})
 
 def teste(request):
-    #importa_dados.importa(2021)
+    importa_dados.importa(2021)
     #print('testando')
     return HttpResponse("Será que deu insert?")
 
