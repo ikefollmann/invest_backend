@@ -5,6 +5,4 @@ from . import views
 urlpatterns = [
     path('', views.index, name='index'),
     path('register', views.register, name='register'),
-    path('teste', views.teste, name='teste'),
-    path('dados/procs/1', views.dadosbtc, name='dadosbtc'),
 ]
