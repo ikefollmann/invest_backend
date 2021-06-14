@@ -32,7 +32,7 @@ class Acao(models.Model):
 
 
 class Ativo(models.Model):
-    ticker = models.ManyToManyField(Acao)
+    ticker = models.CharField(max_length=10, db_index=True)
     data_compra = models.DateField()
     preco_compra = models.DecimalField(max_digits=12, decimal_places=2)
     carteira = models.ForeignKey(Carteira, on_delete=models.CASCADE, db_index=True)
