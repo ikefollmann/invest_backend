@@ -1,0 +1,35 @@
+:root{
+    --black: #282828;
+    --cinza: #5E5E5E;
+}
+
+body{
+    overflow: hidden;
+    margin: 0;
+}
+
+.header {
+    background-color: var(--black);
+    width: 100vw;
+    padding: 3.2rem 0 0;
+    color: #f0f0f0;
+    z-index: 1;
+    padding-bottom: 40px;
+}
+
+.header nav{
+    text-align: right;
+}
+
+.header nav a{
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    padding-right: 50px;
+}
+
+#logo a{
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+}
