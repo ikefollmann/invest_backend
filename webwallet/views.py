@@ -4,7 +4,6 @@ from rest_framework import viewsets, permissions
 from django.contrib.auth.models import User, Group
 from webwallet.serializers import UserSerializer, GroupSerializer
 from django.contrib.auth.forms import UserCreationForm
-from .application import importa_dados, importa_btc
 
 # Create your views here.
 
@@ -26,12 +25,3 @@ def index(request):
 def register(request):
     form = UserCreationForm
     return render(request = request, template_name = 'registration/register.html', context={'form':form})
-
-def teste(request):
-    #importa_dados.importa(2021)
-    #print('testando')
-    return HttpResponse("Será que deu insert?")
-
-def dadosbtc(request):
-    teste = importa_btc.importa()
-    return HttpResponde(teste)
