@@ -2,6 +2,7 @@ from ..models import Acao
 import csv
 
 def importa(ano):
+    ano = 2021
     if ano > 2001:
         filename = '../../dados/COTAHIST_A'+str(ano)+'.TXT'
     else:
