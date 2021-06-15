@@ -37,7 +37,7 @@ class Ativo(models.Model):
     preco_compra = models.DecimalField(max_digits=12, decimal_places=2)
     carteira = models.ForeignKey(Carteira, on_delete=models.CASCADE, db_index=True)
     cotas = models.PositiveBigIntegerField(default=1)
-
+    
 
 class Relatorio(models.Model):
     def getcartatu(iddacarteira, dataini, datafin, intervalo='diario'):
@@ -57,3 +57,11 @@ class Relatorio(models.Model):
 
     def getCotacao(ticker, dataini, datafin, intervalo='diario'):
         return "testando"
+
+class Cadastro(models.Model):
+    
+    nome = models.CharField(max_length=255, null=False)
+    email = models.CharField(max_length=255, null=False)
+    telefone = models.CharField(max_length=15, null=False)
+    senha = models.CharField(max_length=100, null=False)
+    confirma_senha = models.CharField(max_length=100, null=False)
