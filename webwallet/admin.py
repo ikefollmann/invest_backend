@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Carteira, Ativo, Acao, Relatorio
+from .models import Carteira, Ativo, Acao, Relatorio, Cadastro
 
 # Register your models here.
 
