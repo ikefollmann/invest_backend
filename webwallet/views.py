@@ -7,9 +7,6 @@ from django.contrib.auth.forms import UserCreationForm
 
 # Create your views here.
 
-def index(request):
-    return render(request = request, template_name = 'front/index.html', context={'form':form})
-
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all().order_by('-date_joined')
     serializer_class = UserSerializer
@@ -22,4 +19,4 @@ class GroupViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
 def register(request):
-    return render(request = request, template_name = 'registration/register.html')
+    return render(request = request, template_name = 'pages/register.html')
