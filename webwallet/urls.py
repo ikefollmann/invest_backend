@@ -1,7 +1,5 @@
 from django.urls import path
 from . import views
-from django.conf.urls import patterns, include, url
-from django.contrib import admin
 
 urlpatterns = [
     path('', views.index, name='index'),
