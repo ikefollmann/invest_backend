@@ -8,9 +8,3 @@ urlpatterns = [
     path('register', views.register, name='register'),
     path('index', views.index, name='index'),
 ]
-
-urlpatterns = patterns('',
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^$')
-
-)
