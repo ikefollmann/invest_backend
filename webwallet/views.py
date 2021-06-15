@@ -19,4 +19,4 @@ class GroupViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
 def register(request):
-    return render(request = request, template_name = 'pages/register.html')
+    return render(request = request, template_name = 'registration/register.html')
