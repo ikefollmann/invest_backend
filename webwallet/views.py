@@ -20,3 +20,6 @@ class GroupViewSet(viewsets.ModelViewSet):
 
 def register(request):
     return render(request = request, template_name = 'registration/register.html')
+
+def index(request):
+    return render(request = request, template_name = 'registration/index.html')
