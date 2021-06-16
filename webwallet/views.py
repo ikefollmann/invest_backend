@@ -23,3 +23,6 @@ def register(request):
 
 def index(request):
     return render(request = request, template_name = 'registration/index.html')
+
+def blog(request):
+    return render(request = request, template_name = 'front/blog.html')
