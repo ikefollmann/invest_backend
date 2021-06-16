@@ -19,28 +19,28 @@ class GroupViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
 def index(request):
-    return render(request = request, template_name = 'front/index.html')
+    return render(request = request, template_name = 'index.html')
 
 def blog(request):
-    return render(request = request, template_name = 'front/blog.html')
+    return render(request = request, template_name = 'blog.html')
 
 def ajuda(request):
-    return render(request = request, template_name = 'front/ajuda.html')
+    return render(request = request, template_name = 'ajuda.html')
 
 def blogdetalhe(request):
-    return render(request = request, template_name = 'front/blog-detalhe.html')
+    return render(request = request, template_name = 'blog-detalhe.html')
 
 def cadastro(request):
-    return render(request = request, template_name = 'front/cadastro.html')
+    return render(request = request, template_name = 'cadastro.html')
 
 def login(request):
-    return render(request = request, template_name = 'front/login.html')
+    return render(request = request, template_name = 'login.html')
 
 def carteira(request):
-    return render(request = request, template_name = 'front/carteira.html')
+    return render(request = request, template_name = 'carteira.html')
 
 def relatorio(request):
-    return render(request = request, template_name = 'front/relatorio.html')
+    return render(request = request, template_name = 'relatorio.html')
 
 def conta(request):
-    return render(request = request, template_name = 'front/conta.html')
+    return render(request = request, template_name = 'conta.html')
