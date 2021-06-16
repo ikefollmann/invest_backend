@@ -18,5 +18,5 @@ class GroupViewSet(viewsets.ModelViewSet):
     serializer_class = GroupSerializer
     permission_classes = [permissions.IsAuthenticated]
 
-def register(request):
-    return render(request = request, template_name = 'registration/register.html')
+def home(request):
+    return render(request = request, template_name = 'registration/home.html')
