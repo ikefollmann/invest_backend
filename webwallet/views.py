@@ -23,3 +23,24 @@ def index(request):
 
 def blog(request):
     return render(request = request, template_name = 'front/blog.html')
+
+def ajuda(request):
+    return render(request = request, template_name = 'front/ajuda.html')
+
+def blogdetalhe(request):
+    return render(request = request, template_name = 'front/blog-detalhe.html')
+
+def cadastro(request):
+    return render(request = request, template_name = 'front/cadastro.html')
+
+def login(request):
+    return render(request = request, template_name = 'front/login.html')
+
+def carteira(request):
+    return render(request = request, template_name = 'front/carteira.html')
+
+def relatorio(request):
+    return render(request = request, template_name = 'front/relatorio.html')
+
+def conta(request):
+    return render(request = request, template_name = 'front/conta.html')
