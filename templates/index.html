@@ -17,8 +17,8 @@
         <!-- JS / Jquery -->
         <script src="assets/js/jquery.js"></script>
         
-        <link href="assets/animacao/gh_animation.css" rel="stylesheet" type="text/css" media="screen" />
-        <script type="text/javascript" src="assets/animacao/gh_animation.js"></script>   
+        <link href="{% static 'animacao/gh_animation.css' %}" rel="stylesheet" type="text/css" media="screen" />
+        <script type="text/javascript" src="{% static 'animacao/gh_animation.js' %}""></script>   
 
 
     </head>
@@ -61,14 +61,14 @@
                 <div class="row">
                     <div class="col-2"></div>
                     <div id="bloco" class="col-4 left-to-fade">
-                        <img src="../assets/img/home/carteira.jpg" alt="">
+                        <img src="/static/img/home/carteira.jpg" alt="">
                         <div class="preto">
                             <h2>Monte até 10 carteiras</h2>
                             <p>Simule carteiras de investimento e organize elas como quiser.</p>
                         </div>
                     </div>
                     <div id="bloco" class="col-4 right-to-fade">
-                        <img src="../assets/img/home/imagem2.jpg" alt="">
+                        <img src="/static/img/home/imagem2.jpg" alt="">
                         <div class="preto">
                             <h2>Relatórios</h2>
                             <p>Recebe relátorios da sua carteira de investimentos.</p>
@@ -82,14 +82,14 @@
                 <div class="row">
                     <div class="col-2"></div>
                     <div id="bloco" class="col-4 left-to-fade">
-                        <img src="../assets/img/home/acoes.jpg" alt="">
+                        <img src="/static/img/home/acoes.jpg" alt="">
                         <div class="preto">
                             <h2>Análise de Ativo</h2>
                             <p>Acompanhe e análise suas ações e fundos.</p>
                         </div>
                     </div>
                     <div id="bloco" class="col-4 right-to-fade">
-                        <img src="../assets/img/home/grafico.jpg" alt="">
+                        <img src="/static/img/home/grafico.jpg" alt="">
                         <div class="preto">
                             <h2>Monte até 10 carteiras</h2>
                             <p>Simule carteiras de investimento e organize elas como quiser.</p>
@@ -111,12 +111,12 @@
             <div class="container" style="margin-top: 25px;">
                 <div class="row">
                     <div class="col-3 left-to-fade flecha2">
-                        <img class="flecha2" id="flecha2" src="../html/assets/img/home/flecha.svg" alt="">
+                        <img class="flecha2" id="flecha2" src="/static/img/home/flecha.svg" alt="">
                     </div>
                     
                     <div id="tela-noticia" class="col-6 top-to-fade d-block">
-                        <a href="../html/blog-detalhe.html">
-                        <img src="../assets/img/home/grafico.jpg" alt="">
+                        <a href="../templates/blog-detalhe.html">
+                        <img src="/static/img/home/grafico.jpg" alt="">
                         <div class="preto">
                             <h2>Invest!</h2>
                             <p>Invest a nova plataforma para você acompanhar os seus invetimentos.</p>
@@ -125,7 +125,7 @@
                     </div>
 
                     <div id="tela-noticia2" class="col-6 top-to-fade d-none">
-                        <a href="../html/blog-detalhe.html">
+                        <a href="../templates/blog-detalhe.html">
                         <!-- <img src="../assets/img/home/grafico.jpg" alt=""> -->
                         <div class="preto">
                             <h2>Invest!</h2>
@@ -135,7 +135,7 @@
                     </div>
 
                     <div class="col-3 right-to-fade flecha">
-                        <img class="flecha" id="flecha" src="../html/assets/img/home/flecha.svg" alt="">
+                        <img class="flecha" id="flecha" src="/static/img/home/flecha.svg" alt="">
                     </div>
                 </div>
             </div>
