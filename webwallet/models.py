@@ -56,7 +56,17 @@ class Relatorio(models.Model):
         return json
 
     def getCotacao(ticker, dataini, datafin, intervalo='diario'):
-        return "testando"
+        start_date=datetime.strptime(dataini, '%Y-%m-%d')
+        end_date=datetime.strptime(datafin, '%Y-%m-%d')
+        tickers = ticker
+        armazena = Acao.objects.filter(ticker_exact = tickers) & Acao.objects.filter (data_cotacao_range= [start_date,end_date])
+        a = '{"data":['
+        for Acao in armazena:
+	        a+= '{"data_cotacao":'+'"'+str(Acao.data_cotacao)+'"'+','
+	        a+= '"cotacao":'+str(Acao.cotacao)+'}'+','				
+        a = a[0:-1]
+        a+= ']}'
+        return a
 
 class Cadastro(models.Model):
     
