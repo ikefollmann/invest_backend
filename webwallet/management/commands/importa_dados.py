@@ -38,3 +38,4 @@ class Command(BaseCommand):
 
             acao = Acao(cotacao=preco, data_cotacao=data, ticker=codneg)
             acao.save()
+            print(f'{codneg},{data}')
