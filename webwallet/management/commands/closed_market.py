@@ -21,6 +21,8 @@ class Command(BaseCommand):
                                 if acao:
                                     acao.cotacao = stock['regularMarketPrice']
                                     acao.update()
+                                else:
+                                    nova_acao = Acao(ticker=ticker, data_cotacao=hoje, cotacao=stock['regularMarketPrice'])
                     except KeyError:
                         file = open('/var/log/django_logs/database_logs/closed_market.log', 'a')
                         file.write(str(datetime.now()+': Inside Exception: KeyError:'+KeyError+'. Ticker: '+ticker+'\n'))
