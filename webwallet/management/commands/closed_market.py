@@ -19,13 +19,13 @@ class Command(BaseCommand):
                             acao = Acao.objects.filter(ticker=ticker, data_cotacao=hoje)
                             if acao:
                                 acao.cotacao = stock['regularMarketPrice']
-                                acao.save()
+                                acao.update()
                     except KeyError:
-                        file = open('/var/log/django_logs/database_logs.log', 'a')
+                        file = open('/var/log/django_logs/database_logs/closed_market.log', 'a')
                         file.write(str(datetime.now()+': Inside Exception: KeyError:'+KeyError+'. Ticker: '+ticker+'\n'))
             else:
-                file = open('/var/log/django_logs/database_logs.log', 'a')
+                file = open('/var/log/django_logs/database_logs/closed_market.log', 'a')
                 file.write(str(datetime.now()+': Mercado Aberto\n'))
         except KeyError:
-            file = open('/var/log/django_logs/database_logs.log', 'a')
+            file = open('/var/log/django_logs/database_logs/closed_market.log', 'a')
             file.write(str(datetime.now()+': Outside Exception: KeyError:'+KeyError+' \n'))

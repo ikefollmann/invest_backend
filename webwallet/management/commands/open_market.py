@@ -19,7 +19,7 @@ class Command(BaseCommand):
                             acao = Acao.objects.filter(ticker=ticker).latest('data_cotacao')
                             if acao.data_cotacao == hoje:
                                 acao.cotacao = stock['regularMarketPrice']
-                                acao.save()
+                                acao.update()
                             else:
                                 nova_acao = Acao(ticker=ticker, cotacao=stock['regularMarketPrice'], data_cotacao=hoje)
                                 nova_acao.save()
