@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'sslserver',
     'webwallet.apps.WebwalletConfig',
-    'apps.users'
 ]
 
 MIDDLEWARE = [
