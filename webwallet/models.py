@@ -1,8 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.translation import ugettext as _
+from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import PermissionsMixin
 
 # Create your models here.
-
 class Carteira(models.Model):
     nome = models.CharField(max_length=100)
     cliente = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -56,7 +58,17 @@ class Relatorio(models.Model):
         return json
 
     def getCotacao(ticker, dataini, datafin, intervalo='diario'):
-        return "testando"
+        start_date=datetime.strptime(dataini, '%Y-%m-%d')
+        end_date=datetime.strptime(datafin, '%Y-%m-%d')
+        tickers = ticker
+        armazena = Acao.objects.filter(ticker_exact = tickers) & Acao.objects.filter (data_cotacao_range= [start_date,end_date])
+        a = '{"data":['
+        for Acao in armazena:
+	        a+= '{"data_cotacao":'+'"'+str(Acao.data_cotacao)+'"'+','
+	        a+= '"cotacao":'+str(Acao.cotacao)+'}'+','				
+        a = a[0:-1]
+        a+= ']}'
+        return a
 
 class Cadastro(models.Model):
     
@@ -65,3 +77,45 @@ class Cadastro(models.Model):
     telefone = models.CharField(max_length=15, null=False)
     senha = models.CharField(max_length=100, null=False)
     confirma_senha = models.CharField(max_length=100, null=False)
+
+# class EmailUserManager(BaseUserManager):
+#     def create_user(self, *args, **kwargs):
+#         email = kwargs["email"]
+#         email = self.normalize_email(email)
+#         password = kwargs["password"]
+#         kwargs.pop("password")
+
+#         if not email:
+#             raise ValueError(_('Users must have an email address'))
+
+#         user = self.model(**kwargs)
+#         user.set_password(password)
+#         user.save(using=self._db)
+#         return user
+
+#     def create_superuser(self, *args, **kwargs):
+#         user = self.create_user(**kwargs)
+#         user.is_superuser = True
+#         user.save(using=self._db)
+#         return user
+
+
+# class MyUser(PermissionsMixin, AbstractBaseUser):
+#     email = models.EmailField(
+#         verbose_name=_('Email address'),
+#         unique=True,
+#     )
+#     first_name = models.CharField(
+#         verbose_name=_('Nome'),
+#         max_length=50,
+#         blank=False,
+#         help_text=_('Inform your name'),
+#     )
+#     last_name = models.CharField(
+#         verbose_name=_('Sobrenome'),
+#         max_length=50,
+#         blank=False,
+#         help_text=_('Inform your last name'),
+#     )
+#     USERNAME_FIELD = 'email'
+#     objects = EmailUserManager()

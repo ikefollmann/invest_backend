@@ -12,3 +12,4 @@ urlpatterns = [
     path('login', views.login, name='login'),
     path('relatorio', views.relatorio, name='relatorio'),
 ]
+
