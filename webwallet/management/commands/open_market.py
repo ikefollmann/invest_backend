@@ -15,14 +15,15 @@ class Command(BaseCommand):
                     nome = ticker+'.sa'
                     stock = Ticker(nome).price[nome]
                     try:
-                        if stock['regularMarketChangePercent'] != 0:
-                            acao = Acao.objects.filter(ticker=ticker).latest('data_cotacao')
-                            if acao.data_cotacao == hoje:
-                                acao.cotacao = stock['regularMarketPrice']
-                                acao.update()
-                            else:
-                                nova_acao = Acao(ticker=ticker, cotacao=stock['regularMarketPrice'], data_cotacao=hoje)
-                                nova_acao.save()
+                        if isinstance(stock, dict):
+                            if stock['regularMarketChangePercent'] != 0:
+                                acao = Acao.objects.filter(ticker=ticker).latest('data_cotacao')
+                                if acao.data_cotacao == hoje:
+                                    acao.cotacao = stock['regularMarketPrice']
+                                    acao.update()
+                                else:
+                                    nova_acao = Acao(ticker=ticker, cotacao=stock['regularMarketPrice'], data_cotacao=hoje)
+                                    nova_acao.save()
                     except KeyError:
                         file = open('/var/log/django_logs/database_logs.log', 'a')
                         file.write(str(datetime.now()+': Inside Exception: KeyError:'+KeyError+'. Ticker: '+ticker+'\n'))
