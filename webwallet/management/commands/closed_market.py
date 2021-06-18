@@ -6,14 +6,17 @@ from datetime import datetime
 
 class Command(BaseCommand):
     def handle(self, *args, **kwargs):
+        contador = 1
         tickers = Acao.objects.distinct().values('ticker')
         hoje = datetime.today().date()
         try:
             if Ticker('wege3.sa').price['wege3.sa']['marketState'] == 'POSTPOST':
                 for ticker_dict in tickers:
+                    contador += 1
                     ticker = ticker_dict['ticker']
                     nome = ticker+'.sa'
                     stock = Ticker(nome).price[nome]
+                    print(ticker)
                     try:
                         if isinstance(stock, dict):
                             if stock['regularMarketChangePercent'] != 0:
@@ -21,9 +24,11 @@ class Command(BaseCommand):
                                 if acao:
                                     acao.cotacao = stock['regularMarketPrice']
                                     acao.update()
+                                    print('Else: '+str(contador)+'  Acao.ID: '+str(acao.id))
                                 else:
                                     nova_acao = Acao(ticker=ticker, data_cotacao=hoje, cotacao=stock['regularMarketPrice'])
                                     nova_acao.save()
+                                    print('Else: '+str(contador)+'  Nova_Acao.ID: '+str(nova_acao.id))
                     except KeyError:
                         file = open('/var/log/django_logs/database_logs/closed_market.log', 'a')
                         file.write(str(datetime.now()+': Inside Exception: KeyError:'+KeyError+'. Ticker: '+ticker+'\n'))
