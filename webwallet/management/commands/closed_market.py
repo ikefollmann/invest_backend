@@ -22,9 +22,9 @@ class Command(BaseCommand):
                             if stock['regularMarketChangePercent'] != 0:
                                 acao = Acao.objects.filter(ticker=ticker, data_cotacao=hoje)
                                 if acao:
-                                    acao.cotacao = stock['regularMarketPrice']
-                                    acao.update()
-                                    print('Else: '+str(contador)+'  Acao.ID: '+str(acao.id))
+                                    acao[0].cotacao = stock['regularMarketPrice']
+                                    acao[0].update()
+                                    print('Else: '+str(contador)+'  Acao.ID: '+str(acao[0].id))
                                 else:
                                     nova_acao = Acao(ticker=ticker, data_cotacao=hoje, cotacao=stock['regularMarketPrice'])
                                     nova_acao.save()
