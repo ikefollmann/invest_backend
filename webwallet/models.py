@@ -5,6 +5,14 @@ from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 from django.contrib.auth.models import PermissionsMixin
 
 # Create your models here.
+class Cadastro(models.Model):
+    nome = models.CharField(max_length=255, null=False)
+    email = models.CharField(max_length=255, null=False)
+    telefone = models.CharField(max_length=15, null=False)
+    senha = models.CharField(max_length=100, null=False)
+    confirma_senha = models.CharField(max_length=100, null=False)
+
+
 class Carteira(models.Model):
     nome = models.CharField(max_length=100)
     cliente = models.ForeignKey(Cadastro, on_delete=models.CASCADE)
@@ -69,14 +77,6 @@ class Relatorio(models.Model):
         a = a[0:-1]
         a+= ']}'
         return a
-
-class Cadastro(models.Model):
-    
-    nome = models.CharField(max_length=255, null=False)
-    email = models.CharField(max_length=255, null=False)
-    telefone = models.CharField(max_length=15, null=False)
-    senha = models.CharField(max_length=100, null=False)
-    confirma_senha = models.CharField(max_length=100, null=False)
 
 # class EmailUserManager(BaseUserManager):
 #     def create_user(self, *args, **kwargs):
