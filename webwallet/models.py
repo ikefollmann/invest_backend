@@ -7,7 +7,7 @@ from django.contrib.auth.models import PermissionsMixin
 # Create your models here.
 class Carteira(models.Model):
     nome = models.CharField(max_length=100)
-    cliente = models.ForeignKey(User, on_delete=models.CASCADE)
+    cliente = models.ForeignKey(Cadastro, on_delete=models.CASCADE)
 
     def addativo(self, ticker, datadacompra, precodecompra):
         ativo = Ativos(ticker, datadacompra, precodecompra)
