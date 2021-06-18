@@ -23,7 +23,7 @@ class Command(BaseCommand):
                                 acao = Acao.objects.filter(ticker=ticker, data_cotacao=hoje)
                                 if acao:
                                     acao[0].cotacao = stock['regularMarketPrice']
-                                    acao[0].update()
+                                    acao[0].save()
                                     print('Else: '+str(contador)+'  Acao.ID: '+str(acao[0].id))
                                 else:
                                     nova_acao = Acao(ticker=ticker, data_cotacao=hoje, cotacao=stock['regularMarketPrice'])

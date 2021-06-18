@@ -18,9 +18,9 @@ class Command(BaseCommand):
                         if isinstance(stock, dict):
                             if stock['regularMarketChangePercent'] != 0:
                                 acao = Acao.objects.filter(ticker=ticker).latest('data_cotacao')
-                                if acao.data_cotacao == hoje:
-                                    acao.cotacao = stock['regularMarketPrice']
-                                    acao.update()
+                                if acao[0].data_cotacao == hoje:
+                                    acao[0].cotacao = stock['regularMarketPrice']
+                                    acao[0].save()
                                 else:
                                     nova_acao = Acao(ticker=ticker, cotacao=stock['regularMarketPrice'], data_cotacao=hoje)
                                     nova_acao.save()
