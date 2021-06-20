@@ -93,13 +93,13 @@ class Relatorio(models.Model):
         return json
 
     def getdolar(dataini, datafin, intervalo='diario'):
-        return json
+        pass
 
     def getbtc(dataini, datafin, intervalo='diario'):
-        return json
+        pass
 
     def getibov(dataini, datafin, intervalo='diario'):
-        return json
+        pass
 
     def getCotacao(ticker, dataini, datafin, intervalo='diario'):
         start_date=datetime.strptime(dataini, '%Y-%m-%d')
