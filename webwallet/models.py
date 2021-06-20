@@ -103,15 +103,14 @@ class Relatorio(models.Model):
     def getCotacao(ticker, dataini, datafin, intervalo='diario'):
         start_date=datetime.strptime(dataini, '%Y-%m-%d')
         end_date=datetime.strptime(datafin, '%Y-%m-%d')
-        tickers = ticker
-        armazena = Acao.objects.filter(ticker_exact = tickers) & Acao.objects.filter (data_cotacao_range= [start_date,end_date])
-        a = '{"data":['
-        for Acao in armazena:
-	        a+= '{"data_cotacao":'+'"'+str(Acao.data_cotacao)+'"'+','
-	        a+= '"cotacao":'+str(Acao.cotacao)+'}'+','				
-        a = a[0:-1]
-        a+= ']}'
-        return a
+        acoes = Acao.objects.filter(ticker=ticker, data_cotacao__range=[start_date, end_date])
+        json = '{"data":['
+        for acao in acoes:
+	        json += '{"data_cotacao":'+'"'+str(Acao.data_cotacao)+'"'+','
+	        json += '"cotacao":'+str(Acao.cotacao)+'}'+','				
+        json = json[0:-1]
+        json += ']}'
+        return json
 
 # class EmailUserManager(BaseUserManager):
 #     def create_user(self, *args, **kwargs):
