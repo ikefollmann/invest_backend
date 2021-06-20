@@ -53,7 +53,6 @@ class Ativo(models.Model):
 
 class Relatorio(models.Model):
     def getcartatu(iddacarteira, dataini, datafin, intervalo='diario'):
-        json = ''
         datas = []
         if intervalo == 'mensal':
             for date in rrule.rrule(rrule.MONTHLY, dtstart=datetime.strptime(dataini, '%Y-%m-%d'), until=datetime.strptime(datafin, '%Y-%m-%d')):
@@ -67,7 +66,7 @@ class Relatorio(models.Model):
             posicao = 0
             for ativo in ativos:
                 posicao += Acao.objects.filter(ticker=ativo.ticker, data_cotacao__lte=date.date()).latest('data_cotacao').cotacao * ativo.cotas
-            json += '{"dia": "'+str(date.date())+'", "posicao": '+posicao+'},'
+            json += '{"dia": "'+str(date.date())+'", "posicao": '+str(posicao)+'},'
         json = json[:-1]
         json += ']}'            
 
@@ -86,7 +85,7 @@ class Relatorio(models.Model):
             soma_fin = 0
             for ativo in ativos_fin:
                 soma_fin += Acao.objects.filter(ticker=ativo.ticker, data_cotacao__lte=datafin).latest('data_cotacao').cotacao * ativo.cotas
-            json += '{"nome": "'+carteira.nome+'", "pos_ini": '+soma_ini+', "pos_fin": '+soma_fin+'},'
+            json += '{"nome": "'+carteira.nome+'", "pos_ini": '+str(soma_ini)+', "pos_fin": '+str(soma_fin)+'},'
         json = json[:-1]
         json += ']}'
 
