@@ -53,6 +53,7 @@ class Ativo(models.Model):
 
 class Relatorio(models.Model):
     def getcartatu(iddacarteira, dataini, datafin, intervalo='diario'):
+        json = ''
         datas = []
         if intervalo == 'diario':
             for date in rrule.rrule(rrule.DAILY, dtstart=datetime.strptime(dataini, '%Y-%m-%d'), until=datetime.strptime(datafin, '%Y-%m-%d')):
