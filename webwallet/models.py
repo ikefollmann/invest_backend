@@ -81,7 +81,7 @@ class Relatorio(models.Model):
             soma_ini = 0
             for ativo in ativos_ini:
                 soma_ini += Acao.objects.filter(ticker=ativo.ticker, data_cotacao__lte=dataini).latest('data_cotacao').cotacao * ativo.cotas
-            ativos_fin = ativos.filter(data_comta__lte=datafin)
+            ativos_fin = ativos.filter(data_compa__lte=datafin)
             soma_fin = 0
             for ativo in ativos_fin:
                 soma_fin += Acao.objects.filter(ticker=ativo.ticker, data_cotacao__lte=datafin).latest('data_cotacao').cotacao * ativo.cotas
