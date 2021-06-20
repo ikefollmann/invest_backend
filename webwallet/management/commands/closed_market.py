@@ -10,7 +10,7 @@ class Command(BaseCommand):
         tickers = Acao.objects.distinct().values('ticker')
         hoje = datetime.today().date()
         try:
-            if Ticker('wege3.sa').price['wege3.sa']['marketState'] == 'POSTPOST':
+            if Ticker('wege3.sa').price['wege3.sa']['marketState'] == 'CLOSED':
                 for ticker_dict in tickers:
                     contador += 1
                     ticker = ticker_dict['ticker']
@@ -31,10 +31,10 @@ class Command(BaseCommand):
                                     print('Else: '+str(contador)+'  Nova_Acao.ID: '+str(nova_acao.id))
                     except KeyError:
                         file = open('/var/log/django_logs/database_logs/closed_market.log', 'a')
-                        file.write(str(datetime.now()+': Inside Exception: KeyError:'+KeyError+'. Ticker: '+ticker+'\n'))
+                        file.write(str(datetime.now())+': Inside Exception: KeyError:'+KeyError+'. Ticker: '+ticker+'\n')
             else:
                 file = open('/var/log/django_logs/database_logs/closed_market.log', 'a')
-                file.write(str(datetime.now()+': Mercado Aberto\n'))
+                file.write(str(datetime.now())+': Mercado Aberto\n')
         except KeyError:
             file = open('/var/log/django_logs/database_logs/closed_market.log', 'a')
-            file.write(str(datetime.now()+': Outside Exception: KeyError:'+KeyError+' \n'))
+            file.write(str(datetime.now())+': Outside Exception: KeyError:'+KeyError+' \n')

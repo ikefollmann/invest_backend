@@ -26,10 +26,10 @@ class Command(BaseCommand):
                                     nova_acao.save()
                     except KeyError:
                         file = open('/var/log/django_logs/database_logs.log', 'a')
-                        file.write(str(datetime.now()+': Inside Exception: KeyError:'+KeyError+'. Ticker: '+ticker+'\n'))
+                        file.write(str(datetime.now())+': Inside Exception: KeyError:'+KeyError+'. Ticker: '+ticker+'\n'))
             else:
                 file = open('/var/log/django_logs/database_logs.log', 'a')
-                file.write(str(datetime.now()+': Mercado Fechado\n'))
+                file.write(str(datetime.now())+': Mercado Fechado\n'))
         except KeyError:
             file = open('/var/log/django_logs/database_logs.log', 'a')
-            file.write(str(datetime.now()+': Outside Exception: KeyError:'+KeyError+' \n'))
+            file.write(str(datetime.now())+': Outside Exception: KeyError:'+KeyError+' \n'))

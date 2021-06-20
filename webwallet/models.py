@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from datetime import datetime, timedelta
+from dateutil import rrule
 from django.utils.translation import ugettext as _
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 from django.contrib.auth.models import PermissionsMixin
@@ -51,9 +53,42 @@ class Ativo(models.Model):
 
 class Relatorio(models.Model):
     def getcartatu(iddacarteira, dataini, datafin, intervalo='diario'):
+        datas = []
+        if intervalo == 'diario':
+            for date in rrule.rrule(rrule.DAILY, dtstart=datetime.strptime(dataini, '%Y-%m-%d'), until=datetime.strptime(datafin, '%Y-%m-%d')):
+                datas.append(date)
+        elif intervalo == 'mensal':
+            for date in rrule.rrule(rrule.MONTHLY, dtstart=datetime.strptime(dataini, '%Y-%m-%d'), until=datetime.strptime(datafin, '%Y-%m-%d')):
+                datas.append(date)
+        json = '{"data": ['
+        for date in datas:
+            ativos = Ativo.objects.filter(carteira=iddacarteira, data_compra__lte=date.date())
+            posicao = 0
+            for ativo in ativos:
+                posicao += Acao.objects.filter(ticker=ativo.ticker, data_cotacao__lte=date.date()).latest('data_cotacao').cotacao * ativo.cotas
+            json += '{"dia": "'+str(date.date())+'", "posicao": '+posicao+'},'
+        json = json[:-1]
+        json += ']}'            
+
         return json
 
-    def getcarteiras(iddocliente, dataini, datafin, intevalo='diario'):
+    def getcarteiras(iddocliente, dataini, datafin):
+        carteiras = Carteira.objects.filter(cliente=iddocliente)
+        json = '{"data":['
+        for carteira in carteiras:
+            ativos = Ativo.objects.filter(carteira=carteira.id)
+            ativos_ini = ativos.filter(data_compra__lte=dataini)
+            soma_ini = 0
+            for ativo in ativos_ini:
+                soma_ini += Acao.objects.filter(ticker=ativo.ticker, data_cotacao__lte=dataini).latest('data_cotacao').cotacao * ativo.cotas
+            ativos_fin = ativos.filter(data_comta__lte=datafin)
+            soma_fin = 0
+            for ativo in ativos_fin:
+                soma_fin += Acao.objects.filter(ticker=ativo.ticker, data_cotacao__lte=datafin).latest('data_cotacao').cotacao * ativo.cotas
+            json += '{"nome": "'+carteira.nome+'", "pos_ini": '+soma_ini+', "pos_fin": '+soma_fin+'},'
+        json = json[:-1]
+        json += ']}'
+
         return json
 
     def getdolar(dataini, datafin, intervalo='diario'):
