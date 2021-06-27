@@ -44,7 +44,7 @@ def carteira(request):
 def relatorio(request):
     relatorio = Relatorio.getPosAtu(15, '2021-06-27')
     context = {
-        relatorio = relatorio
+        "relatorio": relatorio
     }
     return render(request = request, template_name = 'relatorio.html', context = context)
 
