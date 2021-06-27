@@ -54,7 +54,7 @@ class Ativo(models.Model):
 
 class Relatorio(models.Model):
     def getPosAtu(iddacarteira, dataatu):
-        ativos = Ativo.objects.filter(carteira=iddacarteira, data_compra__lte=dataatu).values('ticker').annotate(Sum('cotas'))
+        ativos = Ativo.objects.filter(carteira=iddacarteira, data_compra__lte=dataatu)
         json = '['
         for ativo in ativos:
             cotacao = Acao.objects.filter(ticker=ativo.ticker, data_cotacao__lte=dataatu).latest('data_cotacao').cotacao
