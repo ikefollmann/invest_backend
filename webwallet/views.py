@@ -4,7 +4,7 @@ from rest_framework import viewsets, permissions
 from django.contrib.auth.models import User, Group
 from webwallet.serializers import UserSerializer, GroupSerializer
 from django.contrib.auth.forms import UserCreationForm
-
+from webwallet.models import Ativo, Relatorio
 
 
 # Create your views here.
@@ -42,7 +42,11 @@ def carteira(request):
     return render(request = request, template_name = 'carteira.html')
 
 def relatorio(request):
-    return render(request = request, template_name = 'relatorio.html')
+    relatorio = Relatorio.getPosAtu(15, '2021-06-27')
+    context = {
+        relatorio = relatorio
+    }
+    return render(request = request, template_name = 'relatorio.html', context = context)
 
 def conta(request):
     return render(request = request, template_name = 'conta.html')
