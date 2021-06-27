@@ -56,7 +56,7 @@ class Relatorio(models.Model):
         ativos = Ativo.objects.filter(carteira=iddacarteira, data_compra__lte=dataatu)
         json = '['
         for ativo in ativos:
-            cotacao = Acao.objects.filter(ticker=ativo.ticker, data_cotacao__lte=dataatu)
+            cotacao = Acao.objects.filter(ticker=ativo.ticker, data_cotacao__lte=dataatu).cotacao
             posicao = cotacao * ativo.cotas
             json += '{"name": "'+ativo.ticker+'", "y": '+str(posicao)+'},'
         json = json[:-1]
