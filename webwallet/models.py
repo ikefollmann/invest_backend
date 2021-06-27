@@ -55,15 +55,24 @@ class Ativo(models.Model):
 class Relatorio(models.Model):
     def getPosAtu(iddacarteira, dataatu):
         ativos = Ativo.objects.filter(carteira=iddacarteira, data_compra__lte=dataatu)
-        json = ''
+        dados = []
         for ativo in ativos:
-            cotacao = Acao.objects.filter(ticker=ativo.ticker, data_cotacao__lte=dataatu).latest('data_cotacao').cotacao
-            posicao = cotacao * ativo.cotas
-            json += "{'ticker': '"+ativo.ticker+"', 'posicao': "+str(posicao)+"},"
-        json = json[:-1]
-        json += ''
+            aux = []
+            ticker = []
+            posicao = []
 
-        return json
+            cotacao = Acao.objects.filter(ticker=ativo.ticker, data_cotacao__lte=dataatu).latest('data_cotacao').cotacao
+            valor = cotacao * ativo.cotas
+
+            ticker.append(ativo.ticker)
+            posicao.append(valor)
+
+            aux.append(ticker)
+            aux.append(posicao)
+
+            dados.append(aux)
+
+        return dados
 
 
     def getcartatu(iddacarteira, dataini, datafin, intervalo='diario'):
