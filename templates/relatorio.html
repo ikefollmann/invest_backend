@@ -253,8 +253,8 @@
                 colorByPoint: true,
                 data: {% for ticker, posicao in relatorio %}
                     {
-                        name: {{ ticker }}
-                        y: {{ posicao }},
+                        name: {{ ticker | escape }}
+                        y: {{ posicao | escape }},
                     }
                 {% endfor %}
             }]
