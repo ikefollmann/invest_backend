@@ -25,7 +25,7 @@ SECRET_KEY = 'ubr_7(1e+lmlyiyjh@&cn_+b_i=)2btp7@9r@xmmmnlu2rhq+y'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['152.67.33.141','187.109.229.114','2invest.tk','10.0.0.4']
+ALLOWED_HOSTS = ['10.0.0.4']
 
 
 # Application definition
