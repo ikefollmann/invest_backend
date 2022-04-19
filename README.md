@@ -1,7 +1,1 @@
-# invest_backend
-
-# Teste Readme
-# Teste 2
-# Teste 3
-
-# Testando crontab2
+# Projeto desenvolvido em grupo durante a cadeira de Laboratório de Desenvolvimento na Universidade Regional Integrada do Alto Uruguai e das Missões.
